@@ -1,5 +1,5 @@
-from dataclasses import dataclass
 from collections import defaultdict
+from dataclasses import dataclass
 from typing import Any, Iterable, List, Tuple
 
 from typing_extensions import Protocol
@@ -71,9 +71,9 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
                 if not parent.unique_id in visited:
                     ret, visited = visit(parent, ret, visited)
         visited += [variable.unique_id]
-        ret += [variable] 
+        ret += [variable]
         return ret, visited
-    
+
     ret = []
     visited = []
     visit(variable, ret, visited)

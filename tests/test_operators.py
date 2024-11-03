@@ -4,8 +4,8 @@ import pytest
 from hypothesis import given
 from hypothesis.strategies import lists
 
-from minitorch import MathTest
 import minitorch
+from minitorch import MathTest
 from minitorch.operators import (
     add,
     addLists,
@@ -13,6 +13,7 @@ from minitorch.operators import (
     id,
     inv,
     inv_back,
+    is_close,
     log_back,
     lt,
     max,
@@ -23,7 +24,6 @@ from minitorch.operators import (
     relu,
     relu_back,
     sigmoid,
-    is_close,
 )
 
 from .strategies import assert_close, small_floats

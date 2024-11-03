@@ -2,6 +2,7 @@
 Be sure you have minitorch installed in you Virtual Env.
 >>> pip install -Ue .
 """
+
 import random
 
 import minitorch
@@ -14,9 +15,11 @@ class Network(minitorch.Module):
         self.layer1 = Linear(in_size=2, out_size=10)
         self.layer2 = []
         for hidden_layer in range(hidden_layers):
-            self.layer2.append(Linear(in_size=hidden_layer+10, out_size=1+hidden_layer+10))
+            self.layer2.append(
+                Linear(in_size=hidden_layer + 10, out_size=1 + hidden_layer + 10)
+            )
         # self.layer2 = Linear(in_size=10, out_size=hidden_layers+10)
-        self.layer3 = Linear(in_size=hidden_layers+10, out_size=1)
+        self.layer3 = Linear(in_size=hidden_layers + 10, out_size=1)
 
     def forward(self, x):
         middle = [h.relu() for h in self.layer1.forward(x)]
@@ -52,10 +55,10 @@ class Linear(minitorch.Module):
         in_size = len(inputs)
         out_size = len(self.bias)
 
-        for i in range(out_size):  
+        for i in range(out_size):
             output += [self._parameters[f"bias_{j}"].value]
             for j in range(in_size):
-                output[i] += self._parameters[f"weight_{j}_{i}"].value * inputs[i] 
+                output[i] += self._parameters[f"weight_{j}_{i}"].value * inputs[i]
 
         return output
 
