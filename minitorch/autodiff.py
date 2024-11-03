@@ -71,7 +71,7 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
     ) -> tuple[List[Variable], List[int]]:
         if not variable.is_leaf():
             for parent in variable.parents:
-                if not parent.unique_id in visited:
+                if parent.unique_id not in visited:
                     ret, visited = visit(parent, ret, visited)
         visited += [variable.unique_id]
         ret += [variable]

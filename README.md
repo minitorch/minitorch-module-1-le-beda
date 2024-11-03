@@ -16,3 +16,61 @@ python sync_previous_module.py previous-module-dir current-module-dir
 The files that will be synced are:
 
         minitorch/operators.py minitorch/module.py tests/test_module.py tests/test_operators.py project/run_manual.py
+
+## Task 1.5: Training
+
+### DATASET = minitorch.datasets\["Simple"\](PTS)
+PTS = 50  
+HIDDEN = 2   
+
+RATE = 0.1  
+EPOCHS = 100  
+
+<img src="graphs/simple.png" width="30%">
+
+### DATASET = minitorch.datasets\["Diag"\](PTS)
+PTS = 50  
+HIDDEN = 2   
+
+RATE = 0.1  
+EPOCHS = 300  
+
+<img src="graphs/diag.png" width="30%">
+
+<!-- 
+
+### DATASET = minitorch.datasets\["Split"\](PTS)
+PTS = 50  
+HIDDEN = 5   
+
+RATE = 0.1  
+EPOCHS = 100  
+
+<img src="graphs/split.png" width="30%">
+
+### DATASET = minitorch.datasets\["Xor"\](PTS)
+PTS = 50  
+HIDDEN = 2   
+
+RATE = 0.1  
+EPOCHS = 100  
+
+<img src="graphs/xor.png" width="30%"> -->
+
+<!-- ### DATASET = minitorch.datasets\["Circle"\](PTS)
+PTS = 100  
+HIDDEN = 10   
+
+RATE = 0.1  
+EPOCHS = 100  
+
+<img src="graphs/circle.png" width="30%">
+
+### DATASET = minitorch.datasets\["Spiral"\](PTS)
+PTS = 100  
+HIDDEN = 2   
+
+RATE = 0.1  
+EPOCHS = 100  
+
+<img src="graphs/spiral.png" width="30%"> -->

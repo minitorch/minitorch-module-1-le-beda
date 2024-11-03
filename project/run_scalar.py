@@ -56,9 +56,9 @@ class Linear(minitorch.Module):
         out_size = len(self.bias)
 
         for i in range(out_size):
-            output += [self._parameters[f"bias_{j}"].value]
+            output += [self.bias[i].value]
             for j in range(in_size):
-                output[i] += self._parameters[f"weight_{j}_{i}"].value * inputs[i]
+                output[i] += self.weights[j][i].value * inputs[j]
 
         return output
 
@@ -120,7 +120,7 @@ class ScalarTrain:
 
 if __name__ == "__main__":
     PTS = 50
-    HIDDEN = 2
+    HIDDEN = 10
     RATE = 0.5
     DATASET = minitorch.datasets["Simple"](PTS)
     ScalarTrain(HIDDEN).train(DATASET, RATE)
