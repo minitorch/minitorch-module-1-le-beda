@@ -37,14 +37,12 @@ EPOCHS = 300
 
 <img src="graphs/diag.png" width="30%">
 
-<!-- 
-
 ### DATASET = minitorch.datasets\["Split"\](PTS)
 PTS = 50  
-HIDDEN = 5   
+HIDDEN = 2   
 
 RATE = 0.1  
-EPOCHS = 100  
+EPOCHS = 300  
 
 <img src="graphs/split.png" width="30%">
 
@@ -53,24 +51,25 @@ PTS = 50
 HIDDEN = 2   
 
 RATE = 0.1  
-EPOCHS = 100  
+EPOCHS = 400  
 
-<img src="graphs/xor.png" width="30%"> -->
+<img src="graphs/xor.png" width="30%">
 
-<!-- ### DATASET = minitorch.datasets\["Circle"\](PTS)
+### DATASET = minitorch.datasets\["Circle"\](PTS)
 PTS = 100  
 HIDDEN = 10   
 
 RATE = 0.1  
-EPOCHS = 100  
+EPOCHS = 500  
 
 <img src="graphs/circle.png" width="30%">
 
-### DATASET = minitorch.datasets\["Spiral"\](PTS)
+
+<!-- ### DATASET = minitorch.datasets\["Spiral"\](PTS)
 PTS = 100  
 HIDDEN = 2   
 
-RATE = 0.1  
-EPOCHS = 100  
+RATE = 1.0  
+EPOCHS = 500  
 
-<img src="graphs/spiral.png" width="30%"> -->
+<img src="graphs/spiral.png" width="30%">  -->
