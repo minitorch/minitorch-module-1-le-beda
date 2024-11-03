@@ -2,6 +2,7 @@
 Be sure you have minitorch installed in you Virtual Env.
 >>> pip install -Ue .
 """
+
 import random
 
 import minitorch
@@ -11,12 +12,20 @@ class Network(minitorch.Module):
     def __init__(self, hidden_layers):
         super().__init__()
         # TODO: Implement for Task 1.5.
-        raise NotImplementedError("Need to implement for Task 1.5")
+        self.layer1 = Linear(in_size=2, out_size=10)
+        self.layer2 = []
+        for hidden_layer in range(hidden_layers):
+            self.layer2.append(
+                Linear(in_size=hidden_layer + 10, out_size=1 + hidden_layer + 10)
+            )
+        # self.layer2 = Linear(in_size=10, out_size=hidden_layers+10)
+        self.layer3 = Linear(in_size=hidden_layers + 10, out_size=1)
 
     def forward(self, x):
         middle = [h.relu() for h in self.layer1.forward(x)]
-        end = [h.relu() for h in self.layer2.forward(middle)]
-        return self.layer3.forward(end)[0].sigmoid()
+        for hidden_layer in self.layer2:
+            middle = [h.relu() for h in hidden_layer.forward(middle)]
+        return self.layer3.forward(middle)[0].sigmoid()
 
 
 class Linear(minitorch.Module):
@@ -41,7 +50,17 @@ class Linear(minitorch.Module):
 
     def forward(self, inputs):
         # TODO: Implement for Task 1.5.
-        raise NotImplementedError("Need to implement for Task 1.5")
+        output = []
+
+        in_size = len(inputs)
+        out_size = len(self.bias)
+
+        for i in range(out_size):
+            output += [self.bias[i].value]
+            for j in range(in_size):
+                output[i] += self.weights[j][i].value * inputs[j]
+
+        return output
 
 
 def default_log_fn(epoch, total_loss, correct, losses):
@@ -101,7 +120,7 @@ class ScalarTrain:
 
 if __name__ == "__main__":
     PTS = 50
-    HIDDEN = 2
+    HIDDEN = 10
     RATE = 0.5
-    data = minitorch.datasets["Simple"](PTS)
-    ScalarTrain(HIDDEN).train(data, RATE)
+    DATASET = minitorch.datasets["Simple"](PTS)
+    ScalarTrain(HIDDEN).train(DATASET, RATE)

@@ -1,3 +1,4 @@
+from collections import defaultdict
 from dataclasses import dataclass
 from typing import Any, Iterable, List, Tuple
 
@@ -23,7 +24,9 @@ def central_difference(f: Any, *vals: Any, arg: int = 0, epsilon: float = 1e-6) 
         An approximation of $f'_i(x_0, \ldots, x_{n-1})$
     """
     # TODO: Implement for Task 1.1.
-    raise NotImplementedError("Need to implement for Task 1.1")
+    augmented_vals = list(vals)
+    augmented_vals[arg] += epsilon
+    return (f(*augmented_vals) - f(*vals)) / epsilon
 
 
 variable_count = 1
@@ -61,8 +64,23 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
     Returns:
         Non-constant Variables in topological order starting from the right.
     """
+
     # TODO: Implement for Task 1.4.
-    raise NotImplementedError("Need to implement for Task 1.4")
+    def visit(
+        variable: Variable, ret: List[Variable], visited: List[int]
+    ) -> tuple[List[Variable], List[int]]:
+        if not variable.is_leaf():
+            for parent in variable.parents:
+                if parent.unique_id not in visited:
+                    ret, visited = visit(parent, ret, visited)
+        visited += [variable.unique_id]
+        ret += [variable]
+        return ret, visited
+
+    ret = []
+    visited = []
+    visit(variable, ret, visited)
+    return ret[::-1]
 
 
 def backpropagate(variable: Variable, deriv: Any) -> None:
@@ -77,7 +95,17 @@ def backpropagate(variable: Variable, deriv: Any) -> None:
     No return. Should write to its results to the derivative values of each leaf through `accumulate_derivative`.
     """
     # TODO: Implement for Task 1.4.
-    raise NotImplementedError("Need to implement for Task 1.4")
+    vars = topological_sort(variable)
+    derivatives = defaultdict(float)
+    derivatives[variable.unique_id] = deriv
+
+    for var in vars:
+        if var.is_leaf():
+            var.accumulate_derivative(derivatives[var.unique_id])
+        else:
+            local_derivatives = var.chain_rule(derivatives[var.unique_id])
+            for parent, derivative in local_derivatives:
+                derivatives[parent.unique_id] += derivative
 
 
 @dataclass
