@@ -141,7 +141,7 @@ class Neg(ScalarFunction):
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         # TODO: Implement for Task 1.4.
-        return -1. *d_output
+        return -1.0 * d_output
 
 
 class Sigmoid(ScalarFunction):
@@ -203,7 +203,7 @@ class LT(ScalarFunction):
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
         # TODO: Implement for Task 1.4.
-        return 0., 0.
+        return 0.0, 0.0
 
 
 class EQ(ScalarFunction):
@@ -217,4 +217,4 @@ class EQ(ScalarFunction):
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
         # TODO: Implement for Task 1.4.
-        return 0., 0.
+        return 0.0, 0.0

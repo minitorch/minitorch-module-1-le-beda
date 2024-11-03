@@ -64,8 +64,11 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
     Returns:
         Non-constant Variables in topological order starting from the right.
     """
+
     # TODO: Implement for Task 1.4.
-    def visit(variable: Variable, ret: List[Variable], visited: List[int]) -> tuple[List[Variable], List[int]]:
+    def visit(
+        variable: Variable, ret: List[Variable], visited: List[int]
+    ) -> tuple[List[Variable], List[int]]:
         if not variable.is_leaf():
             for parent in variable.parents:
                 if not parent.unique_id in visited:

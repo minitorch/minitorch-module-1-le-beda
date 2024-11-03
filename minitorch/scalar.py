@@ -176,7 +176,7 @@ class Scalar:
         # TODO: Implement for Task 1.3.
         local_derivatives = h.last_fn._backward(h.ctx, d_output)
 
-        ret=[]
+        ret = []
         for i in range(len(h.inputs)):
             if not h.inputs[i].is_constant():
                 ret.append((h.inputs[i], local_derivatives[i]))
